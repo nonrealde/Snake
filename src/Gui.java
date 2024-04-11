@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 public class Gui {
-    public static void test() {
+    public static void mainGui() {
         JFrame mainFrame = new JFrame("Test");
         mainFrame.setSize(200,200);
         mainFrame.setVisible(true);
