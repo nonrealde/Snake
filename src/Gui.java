@@ -7,12 +7,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import java.awt.Toolkit;
 
-public class Gui extends JFrame implements ActionListener {
-   
+public class Gui extends JPanel implements ActionListener {
+
     private static JFrame frame = new JFrame("Test");
     private static JPanel board = new JPanel();
     private static JButton b1 = new JButton("Start");
@@ -22,13 +25,14 @@ public class Gui extends JFrame implements ActionListener {
     private static Image dot;
     private static Image head;
     private static Image apple;
+    public static boolean gameRunning = true;
 
     public static void loadGui() {
         settings();
         addButtons();
         loadImages();
     }
-    
+
     public static void settings() {
         // frame.setSize(1200,800);
         frame.setLayout(new GridBagLayout());
@@ -58,7 +62,7 @@ public class Gui extends JFrame implements ActionListener {
         g.weightx = 2;
         frame.add(board, g);
 
-        board.setSize(new Dimension(200,200));
+        board.setSize(new Dimension(200, 200));
         board.setBackground(Color.BLACK);
 
         frame.pack();
@@ -66,9 +70,9 @@ public class Gui extends JFrame implements ActionListener {
 
     public static void addButtons() {
 
-        
-    }    
-    
+
+    }
+
     private static void loadImages() {
         ImageIcon imageIconDot = new ImageIcon("res/dot.png");
         dot = imageIconDot.getImage();
@@ -80,16 +84,20 @@ public class Gui extends JFrame implements ActionListener {
         apple = imageIconApple.getImage();
     }
 
-
+    @Override
     public void paintComponent(Graphics g) {
 
         super.paintComponents(g);
 
-        testDraw(g);
+        draw(g);
+
     }
 
-    public static void testDraw(Graphics g) {
-
+    public void draw(Graphics g) {
+        if (gameRunning) {
+            g.drawImage(apple, Game.appleX, Game.appleY, this);
+        }
+        Toolkit.getDefaultToolkit().sync();
     }
 
     @Override
@@ -97,5 +105,44 @@ public class Gui extends JFrame implements ActionListener {
 
 
         repaint();
+    }
+
+
+    private class TAdapter extends KeyAdapter {
+        private boolean leftDirection = false;
+        private boolean rightDirection = true;
+        private boolean upDirection = false;
+        private boolean downDirection = false;
+        
+        @Override
+        public void keyPressed(KeyEvent e) {
+
+            int key = e.getKeyCode();
+
+            if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
+                leftDirection = true;
+                upDirection = false;
+                downDirection = false;
+            }
+
+            if ((key == KeyEvent.VK_RIGHT) && (!leftDirection)) {
+                rightDirection = true;
+                upDirection = false;
+                downDirection = false;
+            }
+
+            if ((key == KeyEvent.VK_UP) && (!downDirection)) {
+                upDirection = true;
+                rightDirection = false;
+                leftDirection = false;
+            }
+
+            if ((key == KeyEvent.VK_DOWN) && (!upDirection)) {
+                downDirection = true;
+                rightDirection = false;
+                leftDirection = false;
+            }
+            System.out.println(leftDirection + " " + rightDirection + " " + upDirection + " " + downDirection);
+        }
     }
 }
