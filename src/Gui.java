@@ -10,8 +10,10 @@ public class Gui extends JFrame {
    
     private static JFrame frame = new JFrame("Test");
     private static JPanel board = new JPanel();
-    private static JButton b1 = new JButton("Button1");
-    private static JButton b2 = new JButton("Button2");
+    private static JButton b1 = new JButton("Start");
+    private static JButton b2 = new JButton("Reset");
+    public static Integer GAME_HEIGHT = 600;
+    public static Integer GAME_WIDTH = 400;
 
     
     public static void settings() {
@@ -26,23 +28,20 @@ public class Gui extends JFrame {
         g.fill = GridBagConstraints.HORIZONTAL;
         g.weightx = 0.5;
         g.gridx = 0;
-        g.gridy = 0;
+        g.gridy = 1;
         frame.add(b1, g);
         g.fill = GridBagConstraints.HORIZONTAL;
         g.weightx = 0.5;
         g.gridx = 1;
-        g.gridy = 0;
-        frame.add(b2, g);
-        // board.setLocation(200,200);
-        // grid.fill = GridBagConstraints.HORIZONTAL;
-        g.gridx = 0;
         g.gridy = 1;
+        frame.add(b2, g);
+        g.gridx = 0;
+        g.gridy = 0;
         g.gridwidth = 2;
-        g.ipadx = 600;
-        g.ipady = 400;
+        g.ipadx = GAME_HEIGHT;
+        g.ipady = GAME_WIDTH;
         g.weightx = 2;
         frame.add(board, g);
-        // board.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         board.setSize(new Dimension(200,200));
         board.setBackground(Color.BLUE);
         frame.pack();
