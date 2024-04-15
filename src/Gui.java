@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Graphics;
+
 public class Gui extends JFrame {
    
     private static JFrame frame = new JFrame("Test");
@@ -51,4 +53,13 @@ public class Gui extends JFrame {
 
         
     }    
+
+    public void paintComponent(Graphics g) {
+        super.paintComponents(g);
+        testDraw(g);
+    }
+
+    public static void testDraw(Graphics g) {
+
+    }
 }
