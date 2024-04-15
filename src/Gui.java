@@ -1,7 +1,6 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -18,8 +17,8 @@ public class Gui extends JFrame implements ActionListener {
     private static JPanel board = new JPanel();
     private static JButton b1 = new JButton("Start");
     private static JButton b2 = new JButton("Reset");
-    public static Integer GAME_HEIGHT = 600;
-    public static Integer GAME_WIDTH = 400;
+    private static Integer GAME_HEIGHT = 300;
+    private static Integer GAME_WIDTH = 300;
     private static Image dot;
     private static Image head;
     private static Image apple;
@@ -44,11 +43,13 @@ public class Gui extends JFrame implements ActionListener {
         g.gridx = 0;
         g.gridy = 1;
         frame.add(b1, g);
+
         g.fill = GridBagConstraints.HORIZONTAL;
         g.weightx = 0.5;
         g.gridx = 1;
         g.gridy = 1;
         frame.add(b2, g);
+
         g.gridx = 0;
         g.gridy = 0;
         g.gridwidth = 2;
@@ -56,8 +57,10 @@ public class Gui extends JFrame implements ActionListener {
         g.ipady = GAME_WIDTH;
         g.weightx = 2;
         frame.add(board, g);
+
         board.setSize(new Dimension(200,200));
-        board.setBackground(Color.BLUE);
+        board.setBackground(Color.BLACK);
+
         frame.pack();
     }
 
@@ -77,7 +80,7 @@ public class Gui extends JFrame implements ActionListener {
         apple = imageIconApple.getImage();
     }
 
-    
+
     public void paintComponent(Graphics g) {
 
         super.paintComponents(g);

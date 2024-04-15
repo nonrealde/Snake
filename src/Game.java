@@ -5,6 +5,9 @@ public class Game {
         RIGHT,
         DOWN
     }
-    
-
+    private final int ALLE = 900;
+    private final int x[] = new int[ALLE];
+    private final int y[] = new int[ALLE];
+    private int appleX;
+    private int appleY;
 }
