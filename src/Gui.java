@@ -6,9 +6,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Graphics;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 
-public class Gui extends JFrame {
+public class Gui extends JFrame implements ActionListener {
    
     private static JFrame frame = new JFrame("Test");
     private static JPanel board = new JPanel();
@@ -16,6 +20,9 @@ public class Gui extends JFrame {
     private static JButton b2 = new JButton("Reset");
     public static Integer GAME_HEIGHT = 600;
     public static Integer GAME_WIDTH = 400;
+    private Image dot;
+    private Image head;
+    private Image apple;
 
     
     public static void settings() {
@@ -53,13 +60,28 @@ public class Gui extends JFrame {
 
         
     }    
+    
+    private void loadImages() {
+        ImageIcon imageIconDot = new ImageIcon("res/dot.png");
+        dot = ImageIconDot.getImage();
+    }
 
+    
     public void paintComponent(Graphics g) {
+
         super.paintComponents(g);
+
         testDraw(g);
     }
 
     public static void testDraw(Graphics g) {
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+
+        repaint();
     }
 }
