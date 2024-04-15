@@ -20,10 +20,15 @@ public class Gui extends JFrame implements ActionListener {
     private static JButton b2 = new JButton("Reset");
     public static Integer GAME_HEIGHT = 600;
     public static Integer GAME_WIDTH = 400;
-    private Image dot;
-    private Image head;
-    private Image apple;
+    private static Image dot;
+    private static Image head;
+    private static Image apple;
 
+    public static void loadGui() {
+        settings();
+        addButtons();
+        loadImages();
+    }
     
     public static void settings() {
         // frame.setSize(1200,800);
@@ -61,9 +66,15 @@ public class Gui extends JFrame implements ActionListener {
         
     }    
     
-    private void loadImages() {
+    private static void loadImages() {
         ImageIcon imageIconDot = new ImageIcon("res/dot.png");
-        dot = ImageIconDot.getImage();
+        dot = imageIconDot.getImage();
+
+        ImageIcon imageIconHead = new ImageIcon("res/head.png");
+        head = imageIconHead.getImage();
+
+        ImageIcon imageIconApple = new ImageIcon("res/apple.png");
+        apple = imageIconApple.getImage();
     }
 
     
