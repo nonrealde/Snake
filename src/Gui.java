@@ -40,30 +40,31 @@ public class Gui extends JPanel implements ActionListener {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
-        GridBagConstraints g = new GridBagConstraints();
+        GridBagConstraints gr = new GridBagConstraints();
 
-        g.fill = GridBagConstraints.HORIZONTAL;
-        g.weightx = 0.5;
-        g.gridx = 0;
-        g.gridy = 1;
-        frame.add(b1, g);
+        gr.fill = GridBagConstraints.HORIZONTAL;
+        gr.weightx = 0.5;
+        gr.gridx = 0;
+        gr.gridy = 1;
+        frame.add(b1, gr);
 
-        g.fill = GridBagConstraints.HORIZONTAL;
-        g.weightx = 0.5;
-        g.gridx = 1;
-        g.gridy = 1;
-        frame.add(b2, g);
+        gr.fill = GridBagConstraints.HORIZONTAL;
+        gr.weightx = 0.5;
+        gr.gridx = 1;
+        gr.gridy = 1;
+        frame.add(b2, gr);
 
-        g.gridx = 0;
-        g.gridy = 0;
-        g.gridwidth = 2;
-        g.ipadx = GAME_HEIGHT;
-        g.ipady = GAME_WIDTH;
-        g.weightx = 2;
-        frame.add(board, g);
+        gr.gridx = 0;
+        gr.gridy = 0;
+        gr.gridwidth = 2;
+        gr.ipadx = GAME_HEIGHT;
+        gr.ipady = GAME_WIDTH;
+        gr.weightx = 2;
+        frame.add(board, gr);
 
         board.setSize(new Dimension(200, 200));
         board.setBackground(Color.BLACK);
+        //board.paintComponents(Graphics g);
 
         frame.pack();
     }
@@ -105,44 +106,5 @@ public class Gui extends JPanel implements ActionListener {
 
 
         repaint();
-    }
-
-
-    private class TAdapter extends KeyAdapter {
-        private boolean leftDirection = false;
-        private boolean rightDirection = true;
-        private boolean upDirection = false;
-        private boolean downDirection = false;
-        
-        @Override
-        public void keyPressed(KeyEvent e) {
-
-            int key = e.getKeyCode();
-
-            if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
-                leftDirection = true;
-                upDirection = false;
-                downDirection = false;
-            }
-
-            if ((key == KeyEvent.VK_RIGHT) && (!leftDirection)) {
-                rightDirection = true;
-                upDirection = false;
-                downDirection = false;
-            }
-
-            if ((key == KeyEvent.VK_UP) && (!downDirection)) {
-                upDirection = true;
-                rightDirection = false;
-                leftDirection = false;
-            }
-
-            if ((key == KeyEvent.VK_DOWN) && (!upDirection)) {
-                downDirection = true;
-                rightDirection = false;
-                leftDirection = false;
-            }
-            System.out.println(leftDirection + " " + rightDirection + " " + upDirection + " " + downDirection);
-        }
     }
 }
