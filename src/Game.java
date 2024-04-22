@@ -25,5 +25,7 @@ public class Game {
         rand = Math.random();
         appleY = (int) (rand * 30) * 10;
         System.out.println("Apple spawned at: " + appleX + "|" + appleY);
+        Gui.refreshFrame();
     }
+    
 }

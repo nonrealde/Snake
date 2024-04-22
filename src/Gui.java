@@ -31,6 +31,9 @@ public class Gui extends JPanel implements ActionListener {
         loadImages();
         frame.repaint();
     }
+    public static void refreshFrame() {
+        frame.repaint();
+    }
     public static void btnStartMethod() {
         Game.spawnApple();
         frame.repaint();
