@@ -7,8 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import java.awt.Image;
@@ -17,19 +15,20 @@ import java.awt.Toolkit;
 public class Gui extends JPanel implements ActionListener {
 
     private static JFrame frame = new JFrame("Test");
-    private static JPanel board = new JPanel();
-    private static JButton b1 = new JButton("Start");
-    private static JButton b2 = new JButton("Reset");
+    // private static JPanel board = new JPanel();
+    private static Gui board = new Gui();
+    private static JButton btnStart = new JButton("Start");
+    private static JButton btnReset = new JButton("Reset");
     private static Integer GAME_HEIGHT = 300;
     private static Integer GAME_WIDTH = 300;
     private static Image dot;
     private static Image head;
     private static Image apple;
     public static boolean gameRunning = true;
+    public static Color testColor = Color.green;
 
     public static void loadGui() {
         settings();
-        addButtons();
         loadImages();
     }
 
@@ -39,6 +38,8 @@ public class Gui extends JPanel implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        btnStart.addActionListener(board);
+        btnReset.addActionListener(board);
 
         GridBagConstraints gr = new GridBagConstraints();
 
@@ -46,13 +47,13 @@ public class Gui extends JPanel implements ActionListener {
         gr.weightx = 0.5;
         gr.gridx = 0;
         gr.gridy = 1;
-        frame.add(b1, gr);
+        frame.add(btnStart, gr);
 
         gr.fill = GridBagConstraints.HORIZONTAL;
         gr.weightx = 0.5;
         gr.gridx = 1;
         gr.gridy = 1;
-        frame.add(b2, gr);
+        frame.add(btnReset, gr);
 
         gr.gridx = 0;
         gr.gridy = 0;
@@ -64,14 +65,9 @@ public class Gui extends JPanel implements ActionListener {
 
         board.setSize(new Dimension(200, 200));
         board.setBackground(Color.BLACK);
-        //board.paintComponents(Graphics g);
+        // board.repaint();
 
         frame.pack();
-    }
-
-    public static void addButtons() {
-
-
     }
 
     private static void loadImages() {
@@ -87,9 +83,10 @@ public class Gui extends JPanel implements ActionListener {
 
     @Override
     public void paintComponent(Graphics g) {
-
-        super.paintComponents(g);
-
+        // g.setColor(Color.orange);
+        g.fillRect(0, 0, getWidth(), getHeight());
+        g.setColor(testColor);
+        g.fillOval(getWidth() / 4, getHeight() / 4, getWidth() / 2, getHeight() / 2);
         draw(g);
 
     }
@@ -103,8 +100,14 @@ public class Gui extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
-        repaint();
+        if(e.getSource() == btnStart) {
+            System.out.println("start");
+            testColor = Color.red;
+        }
+        if (e.getSource() == btnReset) {
+            System.out.println("Reset");
+            testColor = Color.blue;
+        }
+        frame.repaint();
     }
 }
