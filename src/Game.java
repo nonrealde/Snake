@@ -18,12 +18,12 @@ public class Game {
 
     private Timer t;
 
-    private static void spawnApple() {
+    public static void spawnApple() {
     
-        int rand = (int) (Math.random() * 30);
-        appleX = (rand * 300);
-        rand = (int) (Math.random() * 30);
-        appleY = (rand * 300);
-        
+        double rand = Math.random();
+        appleX = (int) (rand * 30) * 10;
+        rand = Math.random();
+        appleY = (int) (rand * 30) * 10;
+        System.out.println("Apple spawned at: " + appleX + "|" + appleY);
     }
 }

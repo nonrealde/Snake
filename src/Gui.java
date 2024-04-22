@@ -61,10 +61,10 @@ public class Gui extends JPanel implements ActionListener {
         gr.ipadx = GAME_HEIGHT;
         gr.ipady = GAME_WIDTH;
         gr.weightx = 2;
-        frame.add(board, gr);
-
-        board.setSize(new Dimension(200, 200));
+        
+        board.setSize(new Dimension(300, 300));
         board.setBackground(Color.BLACK);
+        frame.add(board, gr);
         // board.repaint();
 
         frame.pack();
@@ -84,25 +84,20 @@ public class Gui extends JPanel implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         // g.setColor(Color.orange);
-        g.fillRect(0, 0, getWidth(), getHeight());
-        g.setColor(testColor);
-        g.fillOval(getWidth() / 4, getHeight() / 4, getWidth() / 2, getHeight() / 2);
-        draw(g);
+        // g.fillRect(0, 0, getWidth(), getHeight());
+        // g.setColor(testColor);
+        // g.fillOval(getWidth() / 4, getHeight() / 4, getWidth() / 2, getHeight() / 2);
+        g.drawImage(apple, Game.appleX, Game.appleY, board);
 
     }
 
-    public void draw(Graphics g) {
-        if (gameRunning) {
-            g.drawImage(apple, Game.appleX, Game.appleY, this);
-        }
-        Toolkit.getDefaultToolkit().sync();
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnStart) {
             System.out.println("start");
             testColor = Color.red;
+            Game.spawnApple();
         }
         if (e.getSource() == btnReset) {
             System.out.println("Reset");
