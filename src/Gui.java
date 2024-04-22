@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import java.awt.Image;
-import java.awt.Toolkit;
 
 public class Gui extends JPanel implements ActionListener {
 
@@ -30,16 +29,26 @@ public class Gui extends JPanel implements ActionListener {
     public static void loadGui() {
         settings();
         loadImages();
+        frame.repaint();
     }
-
+    public static void btnStartMethod() {
+        Game.spawnApple();
+        frame.repaint();
+    }
+    public static void btnResetMethod() {
+        Game.spawnApple();
+        frame.repaint();
+    }
     public static void settings() {
         // frame.setSize(1200,800);
         frame.setLayout(new GridBagLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-        btnStart.addActionListener(board);
-        btnReset.addActionListener(board);
+
+
+        btnStart.addActionListener(e -> btnStartMethod());
+        btnReset.addActionListener(e -> btnResetMethod());
 
         GridBagConstraints gr = new GridBagConstraints();
 
@@ -65,8 +74,6 @@ public class Gui extends JPanel implements ActionListener {
         board.setSize(new Dimension(300, 300));
         board.setBackground(Color.BLACK);
         frame.add(board, gr);
-        // board.repaint();
-
         frame.pack();
     }
 
@@ -83,26 +90,30 @@ public class Gui extends JPanel implements ActionListener {
 
     @Override
     public void paintComponent(Graphics g) {
-        // g.setColor(Color.orange);
-        // g.fillRect(0, 0, getWidth(), getHeight());
-        // g.setColor(testColor);
-        // g.fillOval(getWidth() / 4, getHeight() / 4, getWidth() / 2, getHeight() / 2);
+        g.setColor(Color.black);
+        g.fillRect(0, 0, getWidth(), getHeight());
         g.drawImage(apple, Game.appleX, Game.appleY, board);
 
     }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == btnStart) {
-            System.out.println("start");
-            testColor = Color.red;
-            Game.spawnApple();
-        }
-        if (e.getSource() == btnReset) {
-            System.out.println("Reset");
-            testColor = Color.blue;
-        }
-        frame.repaint();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 }
+
+
+//     @Override
+//     public void actionPerformed(ActionEvent e) {
+//         if(e.getSource() == btnStart) {
+//             System.out.println("start");
+//             testColor = Color.red;
+//             Game.spawnApple();
+//         }
+//         if (e.getSource() == btnReset) {
+//             System.out.println("Reset");
+//             testColor = Color.blue;
+//         }
+//         frame.repaint();
+//     }
+// }
