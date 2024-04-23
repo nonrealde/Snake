@@ -13,8 +13,8 @@ public class Gui implements ActionListener {
     static Board gameboard = new Board();
     private static JButton btnStart = new JButton("Start");
     private static JButton btnReset = new JButton("Reset");
-    static Integer GAME_HEIGHT = 600;
-    static Integer GAME_WIDTH = 400;
+    static Integer GAME_HEIGHT = 300;
+    static Integer GAME_WIDTH = 300;
     public static Color testColor = Color.green;
 
     public static void initGui() {
@@ -79,19 +79,3 @@ public class Gui implements ActionListener {
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 }
-
-
-//     @Override
-//     public void actionPerformed(ActionEvent e) {
-//         if(e.getSource() == btnStart) {
-//             System.out.println("start");
-//             testColor = Color.red;
-//             Game.spawnApple();
-//         }
-//         if (e.getSource() == btnReset) {
-//             System.out.println("Reset");
-//             testColor = Color.blue;
-//         }
-//         frame.repaint();
-//     }
-// }
