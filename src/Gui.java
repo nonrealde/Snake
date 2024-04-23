@@ -10,17 +10,15 @@ import java.awt.event.ActionListener;
 public class Gui implements ActionListener {
 
     private static JFrame frame = new JFrame("Test");
-    private static Board gameboard = new Board();
+    static Board gameboard = new Board();
     private static JButton btnStart = new JButton("Start");
     private static JButton btnReset = new JButton("Reset");
     static Integer GAME_HEIGHT = 600;
     static Integer GAME_WIDTH = 400;
-    public static boolean gameRunning = true;
     public static Color testColor = Color.green;
 
-    public static void loadGui() {
-        settings();
-        Board.loadImages();
+    public static void initGui() {
+        createJFrame();
         frame.repaint();
     }
     public static void refreshFrame() {
@@ -34,7 +32,7 @@ public class Gui implements ActionListener {
         Game.spawnApple();
         frame.repaint();
     }
-    public static void settings() {
+    public static void createJFrame() {
         // frame.setSize(1200,800);
         frame.setLayout(new GridBagLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
