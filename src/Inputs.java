@@ -12,7 +12,7 @@ public class Inputs extends KeyAdapter {
         
         Action upAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-               System.out.println("UP!"); 
+            //    System.out.println("UP!"); 
                if(Snake.currentDirection == Game.Direction.LEFT || Snake.currentDirection == Game.Direction.RIGHT)
                Snake.currentDirection = Game.Direction.UP;
             }
@@ -20,7 +20,7 @@ public class Inputs extends KeyAdapter {
 
         Action downAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-               System.out.println("DOWN!"); 
+            //    System.out.println("DOWN!"); 
                if(Snake.currentDirection == Game.Direction.LEFT || Snake.currentDirection == Game.Direction.RIGHT)
                Snake.currentDirection = Game.Direction.DOWN;
             }
@@ -28,7 +28,7 @@ public class Inputs extends KeyAdapter {
 
         Action rightAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-               System.out.println("RIGHT!"); 
+            //    System.out.println("RIGHT!"); 
                if(Snake.currentDirection == Game.Direction.UP || Snake.currentDirection == Game.Direction.DOWN)
                Snake.currentDirection = Game.Direction.RIGHT;
             }
@@ -36,7 +36,7 @@ public class Inputs extends KeyAdapter {
 
         Action leftAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-               System.out.println("LEFT!"); 
+            //    System.out.println("LEFT!"); 
                if(Snake.currentDirection == Game.Direction.UP || Snake.currentDirection == Game.Direction.DOWN)
                Snake.currentDirection = Game.Direction.LEFT;
             }

@@ -66,13 +66,15 @@ public class Game {
             break;
         }
         int tmp[][] = Snake.body.clone();
-        for (int i = 0; i < Snake.body.length; i++) {
+        for (int i = Snake.body.length; i > 0; i--) {
             if (i == 0) {
+                System.out.println("bevor: " + tmp[0][1]);
                 Snake.body[i][0] = tmpHeadX;
                 Snake.body[i][1] = tmpHeadY;
+                System.out.println("danach: " + tmp[0][1]);
                 continue;
             }
-            System.out.println("Head:" + Snake.headX + "|" + Snake.headY + " i:" + i + " old Value: " + tmp[i - 1][0] + "|" + tmp[i - 1][1] + " new V: " + Snake.body[i][0] + "|" + Snake.body[i][1]);
+            // System.out.println(i + " Head:" + Snake.headX + "|" + Snake.headY + " old Value: " + tmp[i - 1][0] + "|" + tmp[i - 1][1] + " new V: " + Snake.body[i][0] + "|" + Snake.body[i][1]);
                 Snake.body[i][0] = tmp[i - 1][0];
                 Snake.body[i][1] = tmp[i - 1][1];
             }
@@ -107,7 +109,7 @@ public class Game {
                 Snake.body[i + 1][1] = tmp[i][1];
             }
             
-            System.out.println(Snake.body[0][0] + "|" + Snake.body[0][1]);
+            // System.out.println(Snake.body[0][0] + "|" + Snake.body[0][1]);
             spawnApple();
         }
 
