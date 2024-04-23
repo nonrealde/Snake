@@ -9,8 +9,10 @@ public class Board extends JPanel {
     private static Image head;
     private static Image apple;
 
-
-    public static void loadImages() {
+    public static void initBoard() {
+        loadImages();
+    }
+    private static void loadImages() {
         ImageIcon imageIconDot = new ImageIcon("res/dot.png");
         dot = imageIconDot.getImage();
 
@@ -20,10 +22,12 @@ public class Board extends JPanel {
         ImageIcon imageIconApple = new ImageIcon("res/apple.png");
         apple = imageIconApple.getImage();
     }
+    private static void drawSnake() {
+
+    }
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.drawImage(apple, Game.appleX, Game.appleY, this);
