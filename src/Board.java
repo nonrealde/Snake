@@ -30,7 +30,7 @@ public class Board extends JPanel {
     public void paintComponent(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
+        g.drawImage(head, Snake.headX, Snake.headY, this);
         g.drawImage(apple, Game.appleX, Game.appleY, this);
-
     }
 }
