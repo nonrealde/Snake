@@ -19,11 +19,8 @@ public class Game {
     private Timer t;
 
     public static void spawnApple() {
-    
-        double rand = Math.random();
-        appleX = (int) (rand * 30) * 10;
-        rand = Math.random();
-        appleY = (int) (rand * 30) * 10;
+        appleX = (int) (Math.random() * Gui.GAME_HEIGHT / 10) * 10;
+        appleY = (int) (Math.random() * Gui.GAME_WIDTH / 10) * 10;
         System.out.println("Apple spawned at: " + appleX + "|" + appleY);
         Gui.refreshFrame();
     }
