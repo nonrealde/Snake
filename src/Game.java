@@ -23,8 +23,8 @@ public class Game {
     }
 
     public static void spawnApple() {
-        appleX = (int) (Math.random() * Gui.GAME_HEIGHT / 10) * 10;
-        appleY = (int) (Math.random() * Gui.GAME_WIDTH / 10) * 10;
+        appleX = (int) (Math.random() * (Gui.GAME_HEIGHT - 100) / 10) * 10 + 50;
+        appleY = (int) (Math.random() * (Gui.GAME_WIDTH  - 100) / 10) * 10 + 50;
 
         // Check that apple doesnt spawn in snake
         // if(location != snake) {
@@ -46,28 +46,42 @@ public class Game {
     }
 
     public static void updateSnakeLocation() {
-        if(Snake.currentDirection == Direction.UP) {
-
-        }
+        int tmpHeadX = Snake.headX;
+        int tmpHeadY = Snake.headY;
         switch (Snake.currentDirection) {
             case Direction.UP:
-                Snake.headY -= 10;
-                break;
+            Snake.headY -= 10;
+            break;
             case Direction.RIGHT:
-                Snake.headX += 10;
-                break;
+            Snake.headX += 10;
+            break;
             case Direction.DOWN:
-                Snake.headY += 10;
-                break;
+            Snake.headY += 10;
+            break;
             case Direction.LEFT:
-                Snake.headX -= 10;
-                break;
+            Snake.headX -= 10;
+            break;
             
             default:
-                break;
+            break;
         }
+        int tmp[][] = Snake.body.clone();
+        for (int i = 0; i < Snake.body.length; i++) {
+            if (i == 0) {
+                Snake.body[i][0] = tmpHeadX;
+                Snake.body[i][1] = tmpHeadY;
+                continue;
+            }
+            System.out.println("Head:" + Snake.headX + "|" + Snake.headY + " i:" + i + " old Value: " + tmp[i - 1][0] + "|" + tmp[i - 1][1] + " new V: " + Snake.body[i][0] + "|" + Snake.body[i][1]);
+                Snake.body[i][0] = tmp[i - 1][0];
+                Snake.body[i][1] = tmp[i - 1][1];
+            }
+            // Snake KOpof war 1 -> 2
+            // 2 -> 3
+            // 3 -> 4
+        
     }
-
+    
     public static void checkCollision() {
         // Snake -> Wand
         if (Snake.headX < 0 || Snake.headX > Gui.GAME_WIDTH) {
@@ -76,7 +90,8 @@ public class Game {
         if (Snake.headY < 0 || Snake.headY > Gui.GAME_HEIGHT) {
             gameOver = true;
         }
-        // Snake -> Snake
+        
+        // Snake -> APfel
         if (Snake.headX == appleX && Snake.headY == appleY) {
             // temp array old snake state
             int tmp[][] = Snake.body.clone();
@@ -95,7 +110,9 @@ public class Game {
             System.out.println(Snake.body[0][0] + "|" + Snake.body[0][1]);
             spawnApple();
         }
-        // Snake -> APfel
+
+        // Snake -> Snake
+
         
     }
 
@@ -121,6 +138,9 @@ public class Game {
                 Gui.refreshFrame();
                 // System.out.println(Snake.currentDirection + " " + Snake.headX + "|" + Snake.headY);
                 // System.out.println(Snake.body.length);
+                // for (int i = 0; i < Snake.body.length; i++) {
+                //     System.out.println(Snake.body[i][0] + "|" + Snake.body[i][1]);
+                // }
                 delta--;
             }
         }
