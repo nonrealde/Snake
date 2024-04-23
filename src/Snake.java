@@ -3,5 +3,5 @@ public class Snake {
     public static int headX;
     public static int headY;
     public static int length = 0;
-    public static int[][] body = new int[0][2];
+    public static int[][] body = new int[length][2];
 }
