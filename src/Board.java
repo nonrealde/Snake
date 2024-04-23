@@ -22,9 +22,6 @@ public class Board extends JPanel {
         ImageIcon imageIconApple = new ImageIcon("res/apple.png");
         apple = imageIconApple.getImage();
     }
-    private static void drawSnake() {
-
-    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -32,5 +29,9 @@ public class Board extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
         g.drawImage(head, Snake.headX, Snake.headY, this);
         g.drawImage(apple, Game.appleX, Game.appleY, this);
+        for (int i = 0; i < Snake.body.length; i++) {
+            g.drawImage(dot, Snake.body[i][0],Snake.body[i][1], this);
+        }
+        
     }
 }
