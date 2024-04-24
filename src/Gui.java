@@ -9,28 +9,25 @@ import java.awt.event.ActionListener;
 
 public class Gui implements ActionListener {
 
-    private static JFrame frame = new JFrame("Test");
+    private static JFrame frame = new JFrame("Snake");
     static Board gameboard = new Board();
     private static JButton btnStart = new JButton("Start");
     private static JButton btnReset = new JButton("Reset");
     static Integer GAME_HEIGHT = 300;
     static Integer GAME_WIDTH = 300;
-    public static Color testColor = Color.green;
 
     public static void initGui() {
         createJFrame();
         frame.repaint();
     }
     public static void refreshFrame() {
-        frame.repaint();
+        gameboard.repaint();
     }
     public static void btnStartMethod() {
-        Game.spawnApple();
-        frame.repaint();
+        gameboard.repaint();
     }
     public static void btnResetMethod() {
-        Game.spawnApple();
-        frame.repaint();
+        Game.newGame();
     }
     public static void createJFrame() {
         // frame.setSize(1200,800);
@@ -70,12 +67,8 @@ public class Gui implements ActionListener {
         frame.setVisible(true);
     }
 
-    
-
-    
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 }
