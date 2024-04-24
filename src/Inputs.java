@@ -13,7 +13,7 @@ public class Inputs extends KeyAdapter {
         Action upAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
             //    System.out.println("UP!"); 
-               if(Snake.currentDirection == Game.Direction.LEFT || Snake.currentDirection == Game.Direction.RIGHT)
+               if(Snake.currentDirection != Game.Direction.DOWN && Snake.lastTickDirection != Game.Direction.DOWN)
                Snake.currentDirection = Game.Direction.UP;
             }
         };
@@ -21,7 +21,7 @@ public class Inputs extends KeyAdapter {
         Action downAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
             //    System.out.println("DOWN!"); 
-               if(Snake.currentDirection == Game.Direction.LEFT || Snake.currentDirection == Game.Direction.RIGHT)
+            if(Snake.currentDirection != Game.Direction.UP && Snake.lastTickDirection != Game.Direction.UP)
                Snake.currentDirection = Game.Direction.DOWN;
             }
         };
@@ -29,7 +29,7 @@ public class Inputs extends KeyAdapter {
         Action rightAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
             //    System.out.println("RIGHT!"); 
-               if(Snake.currentDirection == Game.Direction.UP || Snake.currentDirection == Game.Direction.DOWN)
+            if(Snake.currentDirection != Game.Direction.LEFT && Snake.lastTickDirection != Game.Direction.LEFT)
                Snake.currentDirection = Game.Direction.RIGHT;
             }
         };
@@ -37,7 +37,7 @@ public class Inputs extends KeyAdapter {
         Action leftAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
             //    System.out.println("LEFT!"); 
-               if(Snake.currentDirection == Game.Direction.UP || Snake.currentDirection == Game.Direction.DOWN)
+            if(Snake.currentDirection != Game.Direction.RIGHT && Snake.lastTickDirection != Game.Direction.RIGHT)
                Snake.currentDirection = Game.Direction.LEFT;
             }
         };
