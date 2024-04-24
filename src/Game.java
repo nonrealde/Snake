@@ -39,11 +39,15 @@ public class Game {
         appleY = (int) (Math.random() * (Gui.GAME_WIDTH  - 100) / 10) * 10 + 50;
 
         // Check that apple doesnt spawn in snake
-        // if(location != snake) {
-        //     lets go
-        // } else {
-        //     neustart methode
-        // }
+        for (int i = 0; i < Snake.body.length; i++) {
+            if (appleX == Snake.body[i][0] && appleY == Snake.body[i][1]) {
+                // Apple spawned in Snake
+                System.out.println("regenerate!");
+                spawnApple();
+                return;
+            }
+            
+        }
 
         System.out.println("Apple spawned at: " + appleX + "|" + appleY);
         Gui.refreshFrame();
@@ -59,6 +63,8 @@ public class Game {
     public static void updateSnakeLocation() {
         int oldSnakeHeadX = Snake.headX;
         int oldSnakeHeadY = Snake.headY;
+        Snake.lastTickDirection = Snake.currentDirection;
+
         switch (Snake.currentDirection) {
             case Direction.UP:
             Snake.headY -= 10;
@@ -120,7 +126,7 @@ public class Game {
 
         // Snake -> Snake
         for (int i = 1; i < Snake.body.length; i++) {
-            System.out.println("check snake self hit for loop");
+            // System.out.println("check snake self hit for loop");
             if (Snake.headX == Snake.body[i][0] && Snake.headY == Snake.body[i][1]) {
                 gameOver = true;
                 gameRunning = false;
