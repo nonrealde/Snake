@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Game {
     public static int appleX;
     public static int appleY;
@@ -7,7 +5,11 @@ public class Game {
     static boolean gameRunning = true;
     static boolean gameOver = false;
     static int FPS = 10;
-    Random random = new Random();
+    static double drawInterval = 1000000000/FPS;
+    static double delta = 0;
+    static long lastTime = System.nanoTime();
+    static long currentTime;
+    static int x = 0;
 
     enum Direction {
         LEFT,
@@ -21,6 +23,16 @@ public class Game {
         spawnApple();
         gameLoop();
     }
+
+    public static void newGame() {
+        // Snake.body = new int[0][2];
+        // Snake.length = 0;
+        // gameRunning = true;
+        // gameOver = false;
+        // initGame();
+        System.out.println("work in progress");
+    }
+
 
     public static void spawnApple() {
         appleX = (int) (Math.random() * (Gui.GAME_HEIGHT - 100) / 10) * 10 + 50;
@@ -42,12 +54,11 @@ public class Game {
         Snake.headY = (int) (Math.random() * (Gui.GAME_WIDTH - 100) / 10) * 10 + 50;
 
         System.out.println("Snake spawned at: " + Snake.headX + "|" + Snake.headY);
-        Gui.refreshFrame();
     }
 
     public static void updateSnakeLocation() {
-        int tmpHeadX = Snake.headX;
-        int tmpHeadY = Snake.headY;
+        int oldSnakeHeadX = Snake.headX;
+        int oldSnakeHeadY = Snake.headY;
         switch (Snake.currentDirection) {
             case Direction.UP:
             Snake.headY -= 10;
@@ -65,32 +76,26 @@ public class Game {
             default:
             break;
         }
-        int tmp[][] = Snake.body.clone();
-        for (int i = Snake.body.length; i > 0; i--) {
-            if (i == 0) {
-                System.out.println("bevor: " + tmp[0][1]);
-                Snake.body[i][0] = tmpHeadX;
-                Snake.body[i][1] = tmpHeadY;
-                System.out.println("danach: " + tmp[0][1]);
-                continue;
-            }
-            // System.out.println(i + " Head:" + Snake.headX + "|" + Snake.headY + " old Value: " + tmp[i - 1][0] + "|" + tmp[i - 1][1] + " new V: " + Snake.body[i][0] + "|" + Snake.body[i][1]);
-                Snake.body[i][0] = tmp[i - 1][0];
-                Snake.body[i][1] = tmp[i - 1][1];
-            }
-            // Snake KOpof war 1 -> 2
-            // 2 -> 3
-            // 3 -> 4
-        
+    
+        for (int i = Snake.body.length - 1; i > 0; i--) {
+            Snake.body[i][0] = Snake.body[i - 1][0];
+            Snake.body[i][1] = Snake.body[i - 1][1];
+        }
+        if (Snake.body.length > 0) {
+        Snake.body[0][0] = oldSnakeHeadX;
+        Snake.body[0][1] = oldSnakeHeadY;
+        }
     }
     
     public static void checkCollision() {
         // Snake -> Wand
         if (Snake.headX < 0 || Snake.headX > Gui.GAME_WIDTH) {
             gameOver = true;
+            gameRunning = false;
         }
         if (Snake.headY < 0 || Snake.headY > Gui.GAME_HEIGHT) {
             gameOver = true;
+            gameRunning = false;
         }
         
         // Snake -> APfel
@@ -114,15 +119,22 @@ public class Game {
         }
 
         // Snake -> Snake
+        for (int i = 1; i < Snake.body.length; i++) {
+            System.out.println("check snake self hit for loop");
+            if (Snake.headX == Snake.body[i][0] && Snake.headY == Snake.body[i][1]) {
+                gameOver = true;
+                gameRunning = false;
+            }
+        }
 
         
     }
 
     public static void gameLoop() {
-        double drawInterval = 1000000000/FPS;
-        double delta = 0;
-        long lastTime = System.nanoTime();
-        long currentTime;
+        drawInterval = 1000000000/FPS;
+        delta = 0;
+        lastTime = System.nanoTime();
+        currentTime = 0;
 
         while (gameRunning) {
             // System.out.println(delta);
@@ -130,14 +142,16 @@ public class Game {
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
 
-            if(delta >= 1) {
+            if(delta >= 1) {               
                 updateSnakeLocation();
                 checkCollision();
                 if (gameOver) {
                     //  gameOver();
+                    System.out.println("gameover");
                     break;
                 }
-                Gui.refreshFrame();
+                // System.out.println("right before repaint");
+                Gui.gameboard.repaint();
                 // System.out.println(Snake.currentDirection + " " + Snake.headX + "|" + Snake.headY);
                 // System.out.println(Snake.body.length);
                 // for (int i = 0; i < Snake.body.length; i++) {
