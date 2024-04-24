@@ -32,6 +32,7 @@ public class Board extends JPanel {
         for (int i = 0; i < Snake.body.length; i++) {
             g.drawImage(dot, Snake.body[i][0],Snake.body[i][1], this);
         }
+        // System.out.println("REDRAW!");
         
     }
 }
