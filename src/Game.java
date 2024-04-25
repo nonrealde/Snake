@@ -42,7 +42,7 @@ public class Game {
         for (int i = 0; i < Snake.body.length; i++) {
             if (appleX == Snake.body[i][0] && appleY == Snake.body[i][1]) {
                 // Apple spawned in Snake
-                System.out.println("regenerate!");
+                // System.out.println("regenerate!");
                 spawnApple();
                 return;
             }
@@ -98,14 +98,17 @@ public class Game {
         if (Snake.headX < 0 || Snake.headX > Gui.GAME_WIDTH) {
             gameOver = true;
             gameRunning = false;
+            // System.out.println("hit wall at " + Snake.headX);
         }
         if (Snake.headY < 0 || Snake.headY > Gui.GAME_HEIGHT) {
             gameOver = true;
             gameRunning = false;
+            // System.out.println("hit wall at " + Snake.headY);
         }
         
         // Snake -> APfel
         if (Snake.headX == appleX && Snake.headY == appleY) {
+            System.out.println("ate apple");
             // temp array old snake state
             int tmp[][] = Snake.body.clone();
             // create new array -> new length
@@ -130,6 +133,7 @@ public class Game {
             if (Snake.headX == Snake.body[i][0] && Snake.headY == Snake.body[i][1]) {
                 gameOver = true;
                 gameRunning = false;
+                // System.out.println("hit self");
             }
         }
 
@@ -153,11 +157,12 @@ public class Game {
                 checkCollision();
                 if (gameOver) {
                     //  gameOver();
-                    System.out.println("gameover");
+                    // System.out.println("gameover");
                     break;
                 }
                 // System.out.println("right before repaint");
                 Gui.gameboard.repaint();
+                // System.out.println(Gui.GAME_HEIGHT + " " + Gui.GAME_WIDTH);
                 // System.out.println(Snake.currentDirection + " " + Snake.headX + "|" + Snake.headY);
                 // System.out.println(Snake.body.length);
                 // for (int i = 0; i < Snake.body.length; i++) {
