@@ -57,7 +57,8 @@ public class Game {
         Snake.headX = (int) (Math.random() * (Gui.GAME_HEIGHT - 100) / 10) * 10 + 50;
         Snake.headY = (int) (Math.random() * (Gui.GAME_WIDTH - 100) / 10) * 10 + 50;
 
-        System.out.println("Snake spawned at: " + Snake.headX + "|" + Snake.headY);
+        System.out.println("Snake spawned at: " + Snake.headX + "|" + Snake.headY); //test
+        
     }
 
     public static void updateSnakeLocation() {
