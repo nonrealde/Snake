@@ -13,8 +13,8 @@ public class Gui implements ActionListener {
     static Board gameboard = new Board();
     private static JButton btnStart = new JButton("Start");
     private static JButton btnReset = new JButton("Reset");
-    static Integer GAME_HEIGHT = 300;
-    static Integer GAME_WIDTH = 300;
+    static Integer GAME_WIDTH = 400;
+    static Integer GAME_HEIGHT = 400;
 
     public static void initGui() {
         createJFrame();
@@ -56,8 +56,8 @@ public class Gui implements ActionListener {
         gr.gridx = 0;
         gr.gridy = 0;
         gr.gridwidth = 2;
-        gr.ipadx = GAME_HEIGHT;
-        gr.ipady = GAME_WIDTH;
+        gr.ipadx = GAME_WIDTH;
+        gr.ipady = GAME_HEIGHT;
         gr.weightx = 2;
         
         gameboard.setSize(new Dimension(300, 300));
