@@ -4,3 +4,7 @@ bin/*
 .metadata/*
 .classpath
 .project
+build.xml
+launch4j.log
+snake.exe
+snake.jar
