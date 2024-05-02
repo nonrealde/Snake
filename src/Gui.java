@@ -12,7 +12,8 @@ public class Gui implements ActionListener {
     static Board gameboard = new Board();
     public static JLabel scoreText = new JLabel("Score: " + Snake.score);
     private static JButton btnReset = new JButton("Reset");
-    private static JButton btnTest = new JButton("2222");
+    private static JButton btnSettings = new JButton("Settings");
+    // private static JButton btnTest = new JButton("2222");
     static Integer GAME_WIDTH = 400;
     static Integer GAME_HEIGHT = 400;
 
@@ -28,7 +29,6 @@ public class Gui implements ActionListener {
             }
         }.start();
         btnReset.setVisible(false);
-        // Game.newGame();
     }
     }
 
@@ -37,31 +37,27 @@ public class Gui implements ActionListener {
     }
     public static void gameOverScreen() {
         String gameOverText = "Your Score was: " + Snake.score;
-        JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 0);
+        JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 1);
         btnReset.setVisible(true);
     }
     public static void createJFrame() {
-        // frame.setSize(1200,800);
         frame.setLayout(new GridBagLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // frame.setLocationRelativeTo(null);
-        frame.setLocation(200,200);
+        frame.setLocation(250,250);
 
-
-        // scoreText.addActionListener(e -> btnStartMethod());
         btnReset.addActionListener(e -> btnResetMethod());
-        btnTest.addActionListener(e -> btnTestMethod());
+        // btnTest.addActionListener(e -> btnTestMethod());
 
         GridBagConstraints gr = new GridBagConstraints();
 
         gr.fill = GridBagConstraints.HORIZONTAL;
-        gr.weightx = 0.5;
+        gr.weightx = 0.33;
         gr.gridx = 0;
         gr.gridy = 0;
         frame.add(scoreText, gr);
 
         gr.fill = GridBagConstraints.HORIZONTAL;
-        gr.weightx = 0.5;
+        gr.weightx = 0.33;
         gr.gridx = 1;
         gr.gridy = 0;
         frame.add(btnReset, gr);
@@ -73,14 +69,19 @@ public class Gui implements ActionListener {
         // gr.gridy = 2;
         // frame.add(btnTest, gr);
 
+        gr.fill = GridBagConstraints.HORIZONTAL;
+        gr.weightx = 0.33;
+        gr.gridx = 2;
+        gr.gridy = 0;
+        frame.add(btnSettings, gr);
+
         gr.gridx = 0;
         gr.gridy = 1;
-        gr.gridwidth = 2;
+        gr.gridwidth = 3;
         gr.ipadx = GAME_WIDTH;
         gr.ipady = GAME_HEIGHT;
         gr.weightx = 2;
 
-    
         frame.add(gameboard, gr);
         frame.pack();
         frame.setVisible(true);
