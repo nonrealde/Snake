@@ -50,7 +50,7 @@ public class Game {
         }
 
         System.out.println("Apple spawned at: " + appleX + "|" + appleY);
-        Gui.refreshFrame();
+        Gui.gameboard.repaint();
     }
 
     public static void startingLocation() {
