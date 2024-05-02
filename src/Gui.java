@@ -1,7 +1,5 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -19,9 +17,6 @@ public class Gui implements ActionListener {
     public static void initGui() {
         createJFrame();
         frame.repaint();
-    }
-    public static void refreshFrame() {
-        gameboard.repaint();
     }
     public static void btnStartMethod() {
         gameboard.repaint();
@@ -59,9 +54,7 @@ public class Gui implements ActionListener {
         gr.ipadx = GAME_WIDTH;
         gr.ipady = GAME_HEIGHT;
         gr.weightx = 2;
-        
-        gameboard.setSize(new Dimension(300, 300));
-        gameboard.setBackground(Color.BLACK);
+    
         frame.add(gameboard, gr);
         frame.pack();
         frame.setVisible(true);
