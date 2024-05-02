@@ -159,7 +159,7 @@ public class Game {
                 updateSnakeLocation();
                 checkCollision();
                 if (gameOver) {
-                    //  gameOver();
+                    Gui.gameOverScreen();
                     // System.out.println("gameover");
                     break;
                 }

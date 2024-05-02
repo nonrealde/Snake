@@ -1,6 +1,7 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -11,7 +12,6 @@ public class Gui implements ActionListener {
     static Board gameboard = new Board();
     public static JLabel scoreText = new JLabel("Score: " + Snake.score);
     private static JButton btnReset = new JButton("Reset");
-    private static JLabel gameOverScreen = new JLabel();
     static Integer GAME_WIDTH = 400;
     static Integer GAME_HEIGHT = 400;
 
@@ -26,7 +26,8 @@ public class Gui implements ActionListener {
         Game.newGame();
     }
     public static void gameOverScreen() {
-
+        String gameOverText = "Your Score was: " + Snake.score;
+        JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 0);
     }
     public static void createJFrame() {
         // frame.setSize(1200,800);
