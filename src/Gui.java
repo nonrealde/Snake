@@ -1,16 +1,17 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Gui implements ActionListener {
-
     private static JFrame frame = new JFrame("Snake");
     static Board gameboard = new Board();
-    private static JButton btnStart = new JButton("Start");
+    public static JLabel scoreText = new JLabel("Score: " + Snake.score);
     private static JButton btnReset = new JButton("Reset");
+    private static JLabel gameOverScreen = new JLabel();
     static Integer GAME_WIDTH = 400;
     static Integer GAME_HEIGHT = 400;
 
@@ -24,14 +25,18 @@ public class Gui implements ActionListener {
     public static void btnResetMethod() {
         Game.newGame();
     }
+    public static void gameOverScreen() {
+
+    }
     public static void createJFrame() {
         // frame.setSize(1200,800);
         frame.setLayout(new GridBagLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
+        // frame.setLocationRelativeTo(null);
+        frame.setLocation(200,200);
 
 
-        btnStart.addActionListener(e -> btnStartMethod());
+        // scoreText.addActionListener(e -> btnStartMethod());
         btnReset.addActionListener(e -> btnResetMethod());
 
         GridBagConstraints gr = new GridBagConstraints();
@@ -39,17 +44,17 @@ public class Gui implements ActionListener {
         gr.fill = GridBagConstraints.HORIZONTAL;
         gr.weightx = 0.5;
         gr.gridx = 0;
-        gr.gridy = 1;
-        frame.add(btnStart, gr);
+        gr.gridy = 0;
+        frame.add(scoreText, gr);
 
         gr.fill = GridBagConstraints.HORIZONTAL;
         gr.weightx = 0.5;
         gr.gridx = 1;
-        gr.gridy = 1;
+        gr.gridy = 0;
         frame.add(btnReset, gr);
 
         gr.gridx = 0;
-        gr.gridy = 0;
+        gr.gridy = 1;
         gr.gridwidth = 2;
         gr.ipadx = GAME_WIDTH;
         gr.ipady = GAME_HEIGHT;

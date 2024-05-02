@@ -125,6 +125,8 @@ public class Game {
             }
             
             // System.out.println(Snake.body[0][0] + "|" + Snake.body[0][1]);
+            Snake.score++;
+            Gui.scoreText.setText("Score: " + Snake.score);
             spawnApple();
         }
 
