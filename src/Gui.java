@@ -12,22 +12,33 @@ public class Gui implements ActionListener {
     static Board gameboard = new Board();
     public static JLabel scoreText = new JLabel("Score: " + Snake.score);
     private static JButton btnReset = new JButton("Reset");
+    private static JButton btnTest = new JButton("2222");
     static Integer GAME_WIDTH = 400;
     static Integer GAME_HEIGHT = 400;
 
     public static void initGui() {
         createJFrame();
-        frame.repaint();
-    }
-    public static void btnStartMethod() {
         gameboard.repaint();
     }
     public static void btnResetMethod() {
-        Game.newGame();
+        if (Game.gameRunning != true) {
+        new Thread() {
+            public void run() {
+                Game.newGame();
+            }
+        }.start();
+        btnReset.setVisible(false);
+        // Game.newGame();
+    }
+    }
+
+    public static void btnTestMethod() {
+        Gui.gameboard.repaint();
     }
     public static void gameOverScreen() {
         String gameOverText = "Your Score was: " + Snake.score;
         JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 0);
+        btnReset.setVisible(true);
     }
     public static void createJFrame() {
         // frame.setSize(1200,800);
@@ -39,6 +50,7 @@ public class Gui implements ActionListener {
 
         // scoreText.addActionListener(e -> btnStartMethod());
         btnReset.addActionListener(e -> btnResetMethod());
+        btnTest.addActionListener(e -> btnTestMethod());
 
         GridBagConstraints gr = new GridBagConstraints();
 
@@ -53,6 +65,13 @@ public class Gui implements ActionListener {
         gr.gridx = 1;
         gr.gridy = 0;
         frame.add(btnReset, gr);
+        btnReset.setVisible(false);
+
+        // gr.fill = GridBagConstraints.HORIZONTAL;
+        // gr.weightx = 0.5;
+        // gr.gridx = 0;
+        // gr.gridy = 2;
+        // frame.add(btnTest, gr);
 
         gr.gridx = 0;
         gr.gridy = 1;
@@ -60,6 +79,7 @@ public class Gui implements ActionListener {
         gr.ipadx = GAME_WIDTH;
         gr.ipady = GAME_HEIGHT;
         gr.weightx = 2;
+
     
         frame.add(gameboard, gr);
         frame.pack();
