@@ -25,12 +25,16 @@ public class Game {
     }
 
     public static void newGame() {
-        // Snake.body = new int[0][2];
-        // Snake.length = 0;
-        // gameRunning = true;
-        // gameOver = false;
-        // initGame();
-        System.out.println("work in progress");
+        System.out.println("Restart Game");
+        // Reset Snake Body
+        Snake.body = new int[0][2];
+        Snake.length = 0;
+        Snake.score = 0;
+        // Reset Game Variables
+        gameRunning = true;
+        gameOver = false;
+        initGame();
+
     }
 
 
