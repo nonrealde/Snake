@@ -6,7 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class Gui implements ActionListener {
     private static JFrame frame = new JFrame("Snake");
@@ -37,11 +36,20 @@ public class Gui implements ActionListener {
         Gui.gameboard.repaint();
     }
     public static void btnSettingsMethod() {
-            Scoreboard.sendScore("Wumpe", 125);
+            Scoreboard.sendScore("Wumpe", Snake.score);
     }
     public static void gameOverScreen() {
         String gameOverText = "Your Score was: " + Snake.score;
-        JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 1);
+        // JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 1);
+        // 
+        String[] options = {"Yes", "No"};
+        int choosenOption = JOptionPane.showOptionDialog(frame, "Send Score to Leaderboard?", gameOverText, 0, 3, null, options, options[1]);
+        if (choosenOption == 0) {
+            Scoreboard.name = JOptionPane.showInputDialog("What's your name?");
+            Scoreboard.sendScore(Scoreboard.name, Snake.score);
+            }
+        // JOptionPane.showOptionDialog(frame, gameOverText, "GameOver!", 1, 1);
+        // JOptionPane.show
         btnReset.setVisible(true);
     }
     public static void createJFrame() {
