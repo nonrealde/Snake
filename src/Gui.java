@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Gui implements ActionListener {
     private static JFrame frame = new JFrame("Snake");
@@ -35,6 +36,14 @@ public class Gui implements ActionListener {
     public static void btnTestMethod() {
         Gui.gameboard.repaint();
     }
+    public static void btnSettingsMethod() {
+        try {
+            Scoreboard.sendScore("Wumpe", 125);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
     public static void gameOverScreen() {
         String gameOverText = "Your Score was: " + Snake.score;
         JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 1);
@@ -46,6 +55,7 @@ public class Gui implements ActionListener {
         frame.setLocation(250,250);
 
         btnReset.addActionListener(e -> btnResetMethod());
+        btnSettings.addActionListener(e -> btnSettingsMethod());
         // btnTest.addActionListener(e -> btnTestMethod());
 
         GridBagConstraints gr = new GridBagConstraints();
