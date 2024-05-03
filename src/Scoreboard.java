@@ -8,15 +8,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Scoreboard {
     public static String name = "Default";
     final static String POST_URL = "https://dev.nonreal.de/snake/write_data.php";
+    final static String GET_URL = "https://dev.nonreal.de/snake/read_data.php";
     public static void sendScore(String name, int score) {
-        Map <String, String> formData = new HashMap<>();
-        formData.put("name", name);
+        String hostname = "Unknown";
+        try {
+            InetAddress addr;
+            addr = InetAddress.getLocalHost();
+            hostname = addr.getHostName();
+        } catch (UnknownHostException ex) {
+            System.out.println("Hostname can not be resolved");
+        }
+        
+        Map < String, String > formData = new HashMap < > ();
+        formData.put("name", hostname);
         formData.put("score", Integer.toString(score));
-    
+
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(POST_URL))
@@ -34,10 +46,11 @@ public class Scoreboard {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        
     }
-    public static String formatData(Map<String, String> formData) {
+    public static String formatData(Map < String, String > formData) {
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> singleEntry : formData.entrySet()) {
+        for (Map.Entry < String, String > singleEntry: formData.entrySet()) {
             if (sb.length() > 0) {
                 sb.append("&");
             }
