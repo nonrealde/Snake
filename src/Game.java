@@ -30,6 +30,8 @@ public class Game {
         Snake.body = new int[0][2];
         Snake.length = 0;
         Snake.score = 0;
+        // Reset visible Score
+        Gui.scoreText.setText("Score: " + Snake.score);
         // Reset Game Variables
         gameRunning = true;
         gameOver = false;
