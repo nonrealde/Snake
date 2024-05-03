@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -11,8 +10,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class Scoreboard {
+    public static String name = "Default";
     final static String POST_URL = "https://dev.nonreal.de/snake/write_data.php";
-    
     public static void sendScore(String name, int score) {
         Map <String, String> formData = new HashMap<>();
         formData.put("name", name);
