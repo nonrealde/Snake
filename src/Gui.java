@@ -37,12 +37,7 @@ public class Gui implements ActionListener {
         Gui.gameboard.repaint();
     }
     public static void btnSettingsMethod() {
-        try {
             Scoreboard.sendScore("Wumpe", 125);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
     public static void gameOverScreen() {
         String gameOverText = "Your Score was: " + Snake.score;
