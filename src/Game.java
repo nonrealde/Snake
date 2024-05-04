@@ -119,7 +119,8 @@ public class Game {
             // temp array old snake state
             int tmp[][] = Snake.body.clone();
             // create new array -> new length
-            Snake.body = new int[++Snake.length][2];
+            Snake.length += 1;
+            Snake.body = new int[Snake.length][2];
 
             Snake.body[0][0] = appleX;
             Snake.body[0][1] = appleY;
