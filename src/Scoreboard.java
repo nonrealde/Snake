@@ -26,8 +26,9 @@ public class Scoreboard {
         }
         
         Map < String, String > formData = new HashMap < > ();
-        formData.put("name", hostname);
+        formData.put("name", name);
         formData.put("score", Integer.toString(score));
+        formData.put("ident", hostname);
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
