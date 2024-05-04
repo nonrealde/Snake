@@ -42,6 +42,10 @@ public class Gui implements ActionListener {
         String gameOverText = "Your Score was: " + Snake.score;
         JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 1);
         if (Snake.score > 0 ) {
+            Scoreboard.name = JOptionPane.showInputDialog("What's your name?");
+            if (Scoreboard.name.isEmpty()) {
+                Scoreboard.name = "Player";
+            }
             Scoreboard.sendScore(Scoreboard.name, Snake.score);
         }
         // 
