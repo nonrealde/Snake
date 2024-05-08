@@ -1,7 +1,7 @@
 public class Game {
     public static int appleX;
     public static int appleY;
-
+    static boolean gamePaused = false;
     static boolean gameRunning = true;
     static boolean gameOver = false;
     static int FPS = 10;
@@ -146,8 +146,25 @@ public class Game {
                 // System.out.println("hit self");
             }
         }
+    }
 
-        
+    public static void pauseGame() {
+        gamePaused = true;
+        gameRunning = false;
+        Gui.btnPause.setVisible(false);
+        Gui.btnResume.setVisible(true);
+    }
+
+    public static void resumeGame() {
+        gamePaused = false;
+        gameRunning = true;
+        Gui.btnPause.setVisible(true);
+        Gui.btnResume.setVisible(false);
+        new Thread() {
+            public void run() {
+                gameLoop();
+            }
+        }.start();
     }
 
     public static void gameLoop() {
@@ -167,17 +184,9 @@ public class Game {
                 checkCollision();
                 if (gameOver) {
                     Gui.gameOverScreen();
-                    // System.out.println("gameover");
                     break;
                 }
-                // System.out.println("right before repaint");
                 Gui.gameboard.repaint();
-                // System.out.println(Gui.GAME_HEIGHT + " " + Gui.GAME_WIDTH);
-                // System.out.println(Snake.currentDirection + " " + Snake.headX + "|" + Snake.headY);
-                // System.out.println(Snake.body.length);
-                // for (int i = 0; i < Snake.body.length; i++) {
-                //     System.out.println(Snake.body[i][0] + "|" + Snake.body[i][1]);
-                // }
                 delta--;
             }
         }
