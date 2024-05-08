@@ -93,12 +93,6 @@ public class Gui implements ActionListener {
         frame.add(btnReset, gr);
         btnReset.setVisible(false);
 
-        // gr.fill = GridBagConstraints.HORIZONTAL;
-        // gr.weightx = 0.5;
-        // gr.gridx = 0;
-        // gr.gridy = 2;
-        // frame.add(btnTest, gr);
-
         gr.fill = GridBagConstraints.HORIZONTAL;
         gr.weightx = 0.2;
         gr.gridx = 2;
@@ -113,17 +107,17 @@ public class Gui implements ActionListener {
         btnResume.setVisible(false);
 
         gr.fill = GridBagConstraints.HORIZONTAL;
-        gr.weightx = 0.33;
-        gr.gridx = 2;
+        gr.weightx = 0.2;
+        gr.gridx = 4;
         gr.gridy = 0;
         frame.add(btnSettings, gr);
 
         gr.gridx = 0;
         gr.gridy = 1;
-        gr.gridwidth = 3;
+        gr.gridwidth = 5;
         gr.ipadx = GAME_WIDTH;
         gr.ipady = GAME_HEIGHT;
-        gr.weightx = 3;
+        gr.weightx = 1;
 
         frame.add(gameboard, gr);
         frame.pack();
