@@ -45,15 +45,19 @@ public class Inputs extends KeyAdapter {
         InputMap inputMap = Gui.gameboard.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = Gui.gameboard.getActionMap();
 
+        inputMap.put(KeyStroke.getKeyStroke(87, 0), "upAction");
         inputMap.put(KeyStroke.getKeyStroke(38, 0), "upAction");
         actionMap.put("upAction", upAction);
 
+        inputMap.put(KeyStroke.getKeyStroke(83, 0), "downAction");
         inputMap.put(KeyStroke.getKeyStroke(40, 0), "downAction");
         actionMap.put("downAction", downAction);
 
+        inputMap.put(KeyStroke.getKeyStroke(68, 0), "rightAction");
         inputMap.put(KeyStroke.getKeyStroke(39, 0), "rightAction");
         actionMap.put("rightAction", rightAction);
 
+        inputMap.put(KeyStroke.getKeyStroke(65, 0), "leftAction");
         inputMap.put(KeyStroke.getKeyStroke(37, 0), "leftAction");
         actionMap.put("leftAction", leftAction);
    }
