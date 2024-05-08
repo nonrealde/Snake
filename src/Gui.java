@@ -32,6 +32,7 @@ public class Gui implements ActionListener {
             }
         }.start();
         btnReset.setVisible(false);
+        btnPause.setVisible(true);
         }
     }
 
@@ -48,6 +49,8 @@ public class Gui implements ActionListener {
     }
     public static void gameOverScreen() {
         String gameOverText = "Your Score was: " + Snake.score;
+        btnReset.setVisible(true);
+        btnPause.setVisible(false);
         JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 1);
         if (Snake.score > 0 ) {
             Scoreboard.name = JOptionPane.showInputDialog("What's your name?");
@@ -65,7 +68,6 @@ public class Gui implements ActionListener {
         //     }
         // JOptionPane.showOptionDialog(frame, gameOverText, "GameOver!", 1, 1);
         // JOptionPane.show
-        btnReset.setVisible(true);
     }
     public static void createJFrame() {
         frame.setLayout(new GridBagLayout());
