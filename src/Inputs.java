@@ -9,36 +9,54 @@ import javax.swing.KeyStroke;
 
 public class Inputs extends KeyAdapter {
     public static void keyBindings() {
-        
+
         Action upAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-            //    System.out.println("UP!"); 
-               if(Snake.currentDirection != Game.Direction.DOWN && Snake.lastTickDirection != Game.Direction.DOWN)
-               Snake.currentDirection = Game.Direction.UP;
+                //    System.out.println("UP!"); 
+                if (Snake.currentDirection != Game.Direction.DOWN && Snake.lastTickDirection != Game.Direction.DOWN) {
+                    Snake.currentDirection = Game.Direction.UP;
+                }
             }
         };
 
         Action downAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-            //    System.out.println("DOWN!"); 
-            if(Snake.currentDirection != Game.Direction.UP && Snake.lastTickDirection != Game.Direction.UP)
-               Snake.currentDirection = Game.Direction.DOWN;
+                //    System.out.println("DOWN!"); 
+                if (Snake.currentDirection != Game.Direction.UP && Snake.lastTickDirection != Game.Direction.UP) {
+                    Snake.currentDirection = Game.Direction.DOWN;
+                }
             }
         };
 
         Action rightAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-            //    System.out.println("RIGHT!"); 
-            if(Snake.currentDirection != Game.Direction.LEFT && Snake.lastTickDirection != Game.Direction.LEFT)
-               Snake.currentDirection = Game.Direction.RIGHT;
+                //    System.out.println("RIGHT!"); 
+                if (Snake.currentDirection != Game.Direction.LEFT && Snake.lastTickDirection != Game.Direction.LEFT) {
+                    Snake.currentDirection = Game.Direction.RIGHT;
+                }
             }
         };
 
         Action leftAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-            //    System.out.println("LEFT!"); 
-            if(Snake.currentDirection != Game.Direction.RIGHT && Snake.lastTickDirection != Game.Direction.RIGHT)
-               Snake.currentDirection = Game.Direction.LEFT;
+                //    System.out.println("LEFT!"); 
+                if (Snake.currentDirection != Game.Direction.RIGHT && Snake.lastTickDirection != Game.Direction.RIGHT) {
+                    Snake.currentDirection = Game.Direction.LEFT;
+                }
+            }
+        };
+
+        Action pauseAction = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("space detected");
+                
+                if (Game.paused == false && Game.running == true) {
+                    System.out.println("pause");
+                    Game.pauseGame();
+                } else if (Game.running == false && Game.paused == true) {
+                    System.out.println("resume");
+                    Game.resumeGame();
+                }
             }
         };
 
@@ -60,5 +78,8 @@ public class Inputs extends KeyAdapter {
         inputMap.put(KeyStroke.getKeyStroke(65, 0), "leftAction");
         inputMap.put(KeyStroke.getKeyStroke(37, 0), "leftAction");
         actionMap.put("leftAction", leftAction);
-   }
+
+        inputMap.put(KeyStroke.getKeyStroke(32, 0), "pauseAction");
+        actionMap.put("pauseAction", pauseAction);
+    }
 }
