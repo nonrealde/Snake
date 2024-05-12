@@ -1,9 +1,9 @@
 public class Game {
     public static int appleX;
     public static int appleY;
-    static boolean gamePaused = false;
-    static boolean gameRunning = true;
-    static boolean gameOver = false;
+    static boolean paused = false;
+    static boolean running = true;
+    static boolean over = false;
     static int FPS = 10;
     static double drawInterval = 1000000000/FPS;
     static double delta = 0;
@@ -33,8 +33,8 @@ public class Game {
         // Reset visible Score
         Gui.scoreText.setText("Score: " + Snake.score);
         // Reset Game Variables
-        gameRunning = true;
-        gameOver = false;
+        running = true;
+        over = false;
         initGame();
 
     }
@@ -103,13 +103,13 @@ public class Game {
     public static void checkCollision() {
         // Snake -> Wand
         if (Snake.headX < 0 || Snake.headX > Gui.GAME_WIDTH) {
-            gameOver = true;
-            gameRunning = false;
+            over = true;
+            running = false;
             // System.out.println("hit wall at " + Snake.headX);
         }
         if (Snake.headY < 0 || Snake.headY > Gui.GAME_HEIGHT) {
-            gameOver = true;
-            gameRunning = false;
+            over = true;
+            running = false;
             // System.out.println("hit wall at " + Snake.headY);
         }
         
@@ -141,23 +141,23 @@ public class Game {
         for (int i = 1; i < Snake.body.length; i++) {
             // System.out.println("check snake self hit for loop");
             if (Snake.headX == Snake.body[i][0] && Snake.headY == Snake.body[i][1]) {
-                gameOver = true;
-                gameRunning = false;
+                over = true;
+                running = false;
                 // System.out.println("hit self");
             }
         }
     }
 
     public static void pauseGame() {
-        gamePaused = true;
-        gameRunning = false;
+        paused = true;
+        running = false;
         Gui.btnPause.setVisible(false);
         Gui.btnResume.setVisible(true);
     }
 
     public static void resumeGame() {
-        gamePaused = false;
-        gameRunning = true;
+        paused = false;
+        running = true;
         Gui.btnPause.setVisible(true);
         Gui.btnResume.setVisible(false);
         new Thread() {
@@ -173,7 +173,7 @@ public class Game {
         lastTime = System.nanoTime();
         currentTime = 0;
 
-        while (gameRunning) {
+        while (running) {
             // System.out.println(delta);
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
@@ -182,7 +182,7 @@ public class Game {
             if(delta >= 1) {               
                 updateSnakeLocation();
                 checkCollision();
-                if (gameOver) {
+                if (over) {
                     Gui.gameOverScreen();
                     break;
                 }
