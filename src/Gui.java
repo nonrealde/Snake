@@ -12,8 +12,8 @@ public class Gui implements ActionListener {
     static Board gameboard = new Board();
     public static JLabel scoreText = new JLabel("Score: " + Snake.score);
     private static JButton btnReset = new JButton("Reset");
-    public static JButton btnPause = new JButton("Pause");
-    public static JButton btnResume = new JButton("Resume");
+    public static JButton btnPause = new JButton("Pause (space)");
+    public static JButton btnResume = new JButton("Resume (space)");
     private static JButton btnScoreboard = new JButton("Scoreboard");
     private static JButton btnSettings = new JButton("Settings");
     // private static JButton btnTest = new JButton("2222");
@@ -25,7 +25,7 @@ public class Gui implements ActionListener {
         gameboard.repaint();
     }
     public static void btnResetMethod() {
-        if (Game.gameRunning != true) {
+        if (Game.running != true) {
         new Thread() {
             public void run() {
                 Game.newGame();
@@ -54,7 +54,8 @@ public class Gui implements ActionListener {
         JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 1);
         if (Snake.score > 0 ) {
             Scoreboard.name = JOptionPane.showInputDialog("What's your name?");
-            if (Scoreboard.name.isEmpty()) {
+            if (Scoreboard.name == null) {
+                System.out.println("no input detected");
                 Scoreboard.name = "Player";
             }
             Scoreboard.sendScore(Scoreboard.name, Snake.score);
@@ -78,6 +79,12 @@ public class Gui implements ActionListener {
         btnSettings.addActionListener(e -> btnSettingsMethod());
         btnPause.addActionListener(e -> Game.pauseGame());
         btnResume.addActionListener(e -> Game.resumeGame());
+
+        btnReset.setFocusable(false);
+        btnSettings.setFocusable(false);
+        btnPause.setFocusable(false);
+        btnResume.setFocusable(false);
+
         // btnTest.addActionListener(e -> btnTestMethod());
 
         GridBagConstraints gr = new GridBagConstraints();
@@ -94,6 +101,7 @@ public class Gui implements ActionListener {
         gr.gridy = 0;
         frame.add(btnReset, gr);
         btnReset.setVisible(false);
+        
 
         gr.fill = GridBagConstraints.HORIZONTAL;
         gr.weightx = 0.2;
