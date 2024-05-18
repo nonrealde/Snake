@@ -2,6 +2,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -23,7 +27,9 @@ public class Gui implements ActionListener {
     public static void initGui() {
         createJFrame();
         gameboard.repaint();
+        setTheme();
     }
+
     public static void btnResetMethod() {
         if (Game.running != true) {
         new Thread() {
@@ -47,6 +53,7 @@ public class Gui implements ActionListener {
             }
         }.start();
     }
+
     public static void gameOverScreen() {
         String gameOverText = "Your Score was: " + Snake.score;
         btnReset.setVisible(true);
@@ -70,6 +77,7 @@ public class Gui implements ActionListener {
         // JOptionPane.showOptionDialog(frame, gameOverText, "GameOver!", 1, 1);
         // JOptionPane.show
     }
+
     public static void createJFrame() {
         frame.setLayout(new GridBagLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -132,6 +140,15 @@ public class Gui implements ActionListener {
         frame.add(gameboard, gr);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public static void setTheme() {
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+            SwingUtilities.updateComponentTreeUI(frame);
+        } catch (Exception e) {
+           System.out.println(e);
+        }
     }
 
     @Override
