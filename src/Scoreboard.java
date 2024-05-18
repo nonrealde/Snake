@@ -41,10 +41,8 @@ public class Scoreboard {
             HttpResponse < String > response = futureResponse.get();
             System.out.println(response);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ExecutionException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         

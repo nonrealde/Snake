@@ -14,7 +14,7 @@ public class Gui implements ActionListener {
     private static JButton btnReset = new JButton("Reset");
     public static JButton btnPause = new JButton("Pause (space)");
     public static JButton btnResume = new JButton("Resume (space)");
-    private static JButton btnScoreboard = new JButton("Scoreboard");
+    // private static JButton btnScoreboard = new JButton("Scoreboard");
     private static JButton btnSettings = new JButton("Settings");
     // private static JButton btnTest = new JButton("2222");
     static Integer GAME_WIDTH = 400;
