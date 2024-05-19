@@ -4,7 +4,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -15,6 +17,7 @@ public class Scoreboard {
     public static String name = "Default";
     final static String POST_URL = "https://dev.nonreal.de/snake/write_data.php";
     final static String GET_URL = "https://dev.nonreal.de/snake/read_data.php";
+
     public static void sendScore(String name, int score) {
         String hostname = "Unknown";
         try {
@@ -45,8 +48,30 @@ public class Scoreboard {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List getScoreBoard() {
+        List<String> scores = new ArrayList<>();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(GET_URL))
+            .header("Content-Type", "application/json")
+            .GET()
+            .build();
+        CompletableFuture < HttpResponse < String >> futureResponse = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+        try {
+            HttpResponse <String> response = futureResponse.get();
+            System.out.println(response);
+            
+        } catch (InterruptedException e) {
+            // TODO: handle exception
+        } catch (ExecutionException e) {
+            // TODO: handle exception
+        }
+        return scores;
         
     }
+
     public static String formatData(Map < String, String > formData) {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry < String, String > singleEntry: formData.entrySet()) {
