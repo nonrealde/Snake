@@ -50,28 +50,29 @@ public class Scoreboard {
         }
     }
 
-    public static List getScoreBoard() {
-        List<String> scores = new ArrayList<>();
+    public static void getScoreBoard() {
+        // Map<String, String> scores = new Map<String,String>();
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(GET_URL))
-            .header("Content-Type", "application/json")
+            .header("Accept", "application/json")
             .GET()
             .build();
         CompletableFuture < HttpResponse < String >> futureResponse = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
         try {
             HttpResponse <String> response = futureResponse.get();
-            System.out.println(response);
+            
+            System.out.println(response.body());
             
         } catch (InterruptedException e) {
-            // TODO: handle exception
+            System.out.println(e);
         } catch (ExecutionException e) {
-            // TODO: handle exception
+            System.out.println(e);
         }
-        return scores;
+        
+        // return scores;
         
     }
-
     public static String formatData(Map < String, String > formData) {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry < String, String > singleEntry: formData.entrySet()) {
