@@ -25,7 +25,7 @@ public class Board extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        long startTime = System.nanoTime();
+        // long startTime = System.nanoTime();
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.drawImage(head, Snake.headX, Snake.headY, this);
@@ -33,8 +33,8 @@ public class Board extends JPanel {
         for (int i = 0; i < Snake.body.length; i++) {
             g.drawImage(dot, Snake.body[i][0],Snake.body[i][1], this);
         }
-        long endTime = System.nanoTime();   
-        long duration = (endTime - startTime) / 1000;
-        System.out.println("draw took: " + duration + "ns");     
+        // long endTime = System.nanoTime();   
+        // long duration = (endTime - startTime) / 1000;
+        // System.out.println("draw took: " + duration + "ns");     
     }
 }
