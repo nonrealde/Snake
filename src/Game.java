@@ -10,6 +10,7 @@ public class Game {
     static long lastTime = System.nanoTime();
     static long currentTime;
     static int x = 0;
+    static int step = 10;
 
     enum Direction {
         LEFT,
@@ -21,7 +22,8 @@ public class Game {
     public static void initGame() {
         Snake.startingLocation();
         Game.spawnApple();
-        Game.loop();
+        // Game.loop();
+        Gui.showSelectDifficultyPanel();
     }
 
     public static void newGame() {
@@ -29,12 +31,13 @@ public class Game {
         // Reset Snake Body
         Snake.reset();
         // Reset visible Score
-        Gui.scoreText.setText("Score: " + Snake.score);
+        Gui.scoreText.setText("  Score: " + Snake.score);
         // Reset Game Variables
         Game.running = true;
         Game.over = false;
-        initGame();
-
+        Snake.startingLocation();
+        Game.spawnApple();
+        Game.loop();
     }
 
 
@@ -62,16 +65,16 @@ public class Game {
 
         switch (Snake.currentDirection) {
             case Direction.UP:
-            Snake.headY -= 10;
+            Snake.headY -= step;
             break;
             case Direction.RIGHT:
-            Snake.headX += 10;
+            Snake.headX += step;
             break;
             case Direction.DOWN:
-            Snake.headY += 10;
+            Snake.headY += step;
             break;
             case Direction.LEFT:
-            Snake.headX -= 10;
+            Snake.headX -= step;
             break;
             default:
             break;
@@ -120,7 +123,7 @@ public class Game {
             
             // System.out.println(Snake.body[0][0] + "|" + Snake.body[0][1]);
             Snake.score++;
-            Gui.scoreText.setText("Score: " + Snake.score);
+            Gui.scoreText.setText("  Score: " + Snake.score);
             Game.spawnApple();
         }
 

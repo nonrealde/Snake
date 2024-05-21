@@ -14,15 +14,14 @@ import java.awt.event.ActionListener;
 public class Gui implements ActionListener {
     private static JFrame frame = new JFrame("Snake");
     static Board gameboard = new Board();
-    public static JLabel scoreText = new JLabel("Score: " + Snake.score);
+    public static JLabel scoreText = new JLabel("  Score: " + Snake.score);
     private static JButton btnReset = new JButton("Reset");
     public static JButton btnPause = new JButton("Pause (space)");
     public static JButton btnResume = new JButton("Resume (space)");
     // private static JButton btnScoreboard = new JButton("Scoreboard");
-    private static JButton btnSettings = new JButton("Settings");
+    private static JButton btnSettings = new JButton("Scoreboard");
     // private static JButton btnTest = new JButton("2222");
-    static Integer GAME_WIDTH = 400;
-    static Integer GAME_HEIGHT = 400;
+    static Integer GAME_WIDTH = 400, GAME_HEIGHT = 400;
 
     public static void initGui() {
         createJFrame();
@@ -52,6 +51,39 @@ public class Gui implements ActionListener {
                 Scoreboard.sendScore("Wumpe", Snake.score);
             }
         }.start();
+    }
+
+    public static void showSelectDifficultyPanel() {
+        String[] options = {"Easy", "Medium", "Hard"};
+        int choosenOption = JOptionPane.showOptionDialog(frame, "Wähle Schwierigkeitsgrad", "test", 0, 3, null, options, options[1]);
+            switch (choosenOption) {
+                case 0:
+                Game.FPS = 8;
+                new Thread() {
+                    public void run() {
+                        Game.newGame();
+                    }
+                }.start();
+                break;
+                case 1:
+                Game.FPS = 12;
+                new Thread() {
+                    public void run() {
+                        Game.newGame();
+                    }
+                }.start();
+                break;
+                case 2:
+                Game.FPS = 18;
+                new Thread() {
+                    public void run() {
+                        Game.newGame();
+                    }
+                }.start();
+                break;
+            default:
+                break;
+        }
     }
 
     public static void gameOverScreen() {
@@ -140,6 +172,7 @@ public class Gui implements ActionListener {
         frame.add(gameboard, gr);
         frame.pack();
         frame.setVisible(true);
+        frame.setResizable(false);
     }
 
     public static void setTheme() {
