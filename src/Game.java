@@ -22,11 +22,14 @@ public class Game {
     public static void initGame() {
         Snake.startingLocation();
         Game.spawnApple();
-        // Game.loop();
         Gui.showSelectDifficultyPanel();
     }
 
     public static void newGame() {
+        // reset buttons
+        Gui.btnDifficulty.setVisible(false);
+        Gui.btnReset.setVisible(false);
+        Gui.btnPause.setVisible(true);
         System.out.println("Restart Game");
         // Reset Snake Body
         Snake.reset();
@@ -95,15 +98,13 @@ public class Game {
         if (Snake.headX < 0 || Snake.headX > Gui.GAME_WIDTH) {
             Game.over = true;
             Game.running = false;
-            // System.out.println("hit wall at " + Snake.headX);
         }
         if (Snake.headY < 0 || Snake.headY > Gui.GAME_HEIGHT) {
             Game.over = true;
             Game.running = false;
-            // System.out.println("hit wall at " + Snake.headY);
         }
         
-        // Snake -> APfel
+        // Snake -> Apfel
         if (Snake.headX == appleX && Snake.headY == appleY) {
             System.out.println("ate apple");
             // temp array old snake state
@@ -121,7 +122,6 @@ public class Game {
                 Snake.body[i + 1][1] = tmp[i][1];
             }
             
-            // System.out.println(Snake.body[0][0] + "|" + Snake.body[0][1]);
             Snake.score++;
             Gui.scoreText.setText("  Score: " + Snake.score);
             Game.spawnApple();
@@ -129,11 +129,9 @@ public class Game {
 
         // Snake -> Snake
         for (int i = 1; i < Snake.body.length; i++) {
-            // System.out.println("check snake self hit for loop");
             if (Snake.headX == Snake.body[i][0] && Snake.headY == Snake.body[i][1]) {
                 Game.over = true;
                 Game.running = false;
-                // System.out.println("hit self");
             }
         }
     }
@@ -164,7 +162,6 @@ public class Game {
         currentTime = 0;
 
         while (running) {
-            // System.out.println(delta);
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;

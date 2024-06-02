@@ -5,24 +5,26 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatDarkLaf;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Gui implements ActionListener {
+
+    // create gui components
     private static JFrame frame = new JFrame("Snake");
     static Board gameboard = new Board();
     public static JLabel scoreText = new JLabel("  Score: " + Snake.score);
-    private static JButton btnReset = new JButton("Reset");
+    public static JButton btnReset = new JButton("Reset");
     public static JButton btnPause = new JButton("Pause (space)");
     public static JButton btnResume = new JButton("Resume (space)");
-    // private static JButton btnScoreboard = new JButton("Scoreboard");
-    private static JButton btnSettings = new JButton("Scoreboard");
-    // private static JButton btnTest = new JButton("2222");
+    public static JButton btnDifficulty = new JButton("Select Difficulty");
+
+    // set static optins
     static Integer GAME_WIDTH = 400, GAME_HEIGHT = 400;
 
+    // init function called at startup
     public static void initGui() {
         createJFrame();
         gameboard.repaint();
@@ -41,16 +43,8 @@ public class Gui implements ActionListener {
         }
     }
 
-    public static void btnTestMethod() {
-        Gui.gameboard.repaint();
-    }
-
-    public static void btnSettingsMethod() {
-        new Thread() {
-            public void run() {
-                Scoreboard.sendScore("Wumpe", Snake.score);
-            }
-        }.start();
+    public static void btnDifficultyMethod() {
+        showSelectDifficultyPanel();
     }
 
     public static void showSelectDifficultyPanel() {
@@ -90,42 +84,23 @@ public class Gui implements ActionListener {
         String gameOverText = "Your Score was: " + Snake.score;
         btnReset.setVisible(true);
         btnPause.setVisible(false);
+        btnDifficulty.setVisible(true);
         JOptionPane.showMessageDialog(frame, gameOverText, "GameOver!", 1);
-        if (Snake.score > 0 ) {
-            Scoreboard.name = JOptionPane.showInputDialog("What's your name?");
-            if (Scoreboard.name == null) {
-                System.out.println("no input detected");
-                Scoreboard.name = "Player";
-            }
-            Scoreboard.sendScore(Scoreboard.name, Snake.score);
-        }
-        // 
-        // String[] options = {"Yes", "No"};
-        // int choosenOption = JOptionPane.showOptionDialog(frame, "Send Score to Leaderboard?", gameOverText, 0, 3, null, options, options[1]);
-        // if (choosenOption == 0) {
-        //     Scoreboard.name = JOptionPane.showInputDialog("What's your name?");
-        //     Scoreboard.sendScore(Scoreboard.name, Snake.score);
-        //     }
-        // JOptionPane.showOptionDialog(frame, gameOverText, "GameOver!", 1, 1);
-        // JOptionPane.show
     }
 
     public static void createJFrame() {
         frame.setLayout(new GridBagLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocation(250,250);
 
         btnReset.addActionListener(e -> btnResetMethod());
-        btnSettings.addActionListener(e -> btnSettingsMethod());
+        btnDifficulty.addActionListener(e -> btnDifficultyMethod());
         btnPause.addActionListener(e -> Game.pauseGame());
         btnResume.addActionListener(e -> Game.resumeGame());
 
         btnReset.setFocusable(false);
-        btnSettings.setFocusable(false);
+        btnDifficulty.setFocusable(false);
         btnPause.setFocusable(false);
         btnResume.setFocusable(false);
-
-        // btnTest.addActionListener(e -> btnTestMethod());
 
         GridBagConstraints gr = new GridBagConstraints();
 
@@ -160,7 +135,8 @@ public class Gui implements ActionListener {
         gr.weightx = 0.2;
         gr.gridx = 4;
         gr.gridy = 0;
-        frame.add(btnSettings, gr);
+        frame.add(btnDifficulty, gr);
+        btnDifficulty.setVisible(false);
 
         gr.gridx = 0;
         gr.gridy = 1;
@@ -173,6 +149,7 @@ public class Gui implements ActionListener {
         frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
     }
 
     public static void setTheme() {

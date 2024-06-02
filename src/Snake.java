@@ -15,7 +15,6 @@ public class Snake {
     public static void startingLocation() {
         Snake.headX = (int) Math.round((Gui.GAME_WIDTH * 0.5) / 10) * 10;
         Snake.headY = (int) Math.round((Gui.GAME_HEIGHT * 0.5) / 10) * 10;
-        // System.out.println("Snake spawned at: " + Snake.headX + "|" + Snake.headY);
     }
     
     public static void reset() {
