@@ -5,3 +5,10 @@ levels
     number of food per level?
 highscore list (ggf api?)
 foodscore? (1 food = 1 score?)
+
+difficulty selection in jpanel (to make window moveable)
+create funct for difficulty
+change scoreboard button to difficulty selection
+    only make vis on death
+remove scoreboard functions
+    change end of game behaviour
