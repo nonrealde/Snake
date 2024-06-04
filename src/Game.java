@@ -5,7 +5,7 @@ public class Game {
     static boolean running = true;
     static boolean over = false;
     static int FPS = 10;
-    static double drawInterval = 1000000000/FPS;
+    static double drawInterval = 1_000_000_000/FPS;
     static double delta = 0;
     static long lastTime = System.nanoTime();
     static long currentTime;
@@ -87,6 +87,7 @@ public class Game {
             Snake.body[i][0] = Snake.body[i - 1][0];
             Snake.body[i][1] = Snake.body[i - 1][1];
         }
+        
         if (Snake.body.length > 0) {
         Snake.body[0][0] = oldSnakeHeadX;
         Snake.body[0][1] = oldSnakeHeadY;

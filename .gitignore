@@ -6,3 +6,4 @@ bin/*
 .project
 build.xml
 launch4j.log
+prasi/*
