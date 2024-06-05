@@ -49,7 +49,7 @@ public class Gui implements ActionListener {
 
     public static void showSelectDifficultyPanel() {
         String[] options = {"Easy", "Medium", "Hard"};
-        int choosenOption = JOptionPane.showOptionDialog(frame, "Wähle Schwierigkeitsgrad", "test", 0, 3, null, options, options[1]);
+        int choosenOption = JOptionPane.showOptionDialog(frame, "Wähle Schwierigkeitsgrad", "", 0, 3, null, options, options[1]);
             switch (choosenOption) {
                 case 0:
                 Game.FPS = 8;
